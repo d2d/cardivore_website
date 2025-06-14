@@ -349,8 +349,99 @@ footer a:hover {
     color: #e0e0e0;
 }
 
+/* Mobile Nav Toggle Button */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default, shown in media query */
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001; /* Above nav ul */
+}
+
+.mobile-nav-toggle .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Hamburger Icon Lines */
+.mobile-nav-toggle span:not(.sr-only) {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute; /* Or relative to nav, adjust as needed */
+        right: 1.5rem;
+        top: 1rem; /* Adjust to vertically align with logo if possible */
+    }
+
+    nav ul {
+        position: fixed; /* Or absolute, depending on desired effect */
+        inset: 0 0 0 30%; /* Slide in from right, example */
+        flex-direction: column;
+        padding: min(20vh, 10rem) 2em;
+        background: rgba(18, 18, 32, 0.95); /* Slightly transparent dark background */
+        backdrop-filter: blur(5px);
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+        z-index: 1000;
+    }
+
+    nav ul[data-visible="true"] {
+        transform: translateX(0%);
+    }
+
+    /* Adjusting existing mobile styles for nav */
+    nav {
+        /* flex-direction: column; /* This might not be needed if ul is positioned fixed */
+        align-items: center; /* Keep logo centered if nav itself is not column */
+    }
+
+    nav .logo {
+        margin-bottom: 0; /* Remove bottom margin if toggle is next to it */
+        /* Ensure logo stays on the left */
+        margin-right: auto;
+    }
+
+    /* nav ul was previously set to flex-direction: column; align-items: center; width: 100%; */
+    /* These are now handled by the fixed positioning and inset properties */
+
+    nav ul li {
+        margin: 15px 0; /* More spacing for touch targets */
+        text-align: center;
+    }
+
+    main {
+        padding-top: 70px; /* Keep original padding-top as header height is fixed */
+    }
+
+    /* Hamburger animation to X when open */
+    .mobile-nav-toggle[aria-expanded="true"] span:nth-child(1):not(.sr-only) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .mobile-nav-toggle[aria-expanded="true"] span:nth-child(2):not(.sr-only) {
+        opacity: 0;
+    }
+    .mobile-nav-toggle[aria-expanded="true"] span:nth-child(3):not(.sr-only) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
     h1 {
         font-size: 2.2em;
     }
