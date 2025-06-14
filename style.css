@@ -314,9 +314,13 @@ footer a:hover {
 }
 
 /* Privacy Policy Page Specific */
+main.privacy-policy-page {
+    padding-top: 100px; /* Increased from default main padding-top to clear header */
+}
+
 .privacy-policy-container {
     max-width: 900px;
-    margin: 20px auto;
+    margin: 0 auto 20px auto; /* Adjusted margin since main now has more padding */
     padding: 20px;
     background-color: #202035;
     border-radius: 8px;
