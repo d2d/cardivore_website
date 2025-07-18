@@ -20,9 +20,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-// Optional: Active link highlighting based on scroll position
-// This can be more complex and might be added later if desired.
-// For now, simple hover effects are in CSS.
+// Add scroll-based header background opacity
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const scrollY = window.scrollY;
+    
+    if (scrollY > 50) {
+        header.style.backgroundColor = 'rgba(47, 47, 47, 0.98)';
+    } else {
+        header.style.backgroundColor = 'rgba(47, 47, 47, 0.95)';
+    }
+});
+
+// Add intersection observer for fade-in animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe feature items and gallery items
+document.addEventListener('DOMContentLoaded', () => {
+    const elementsToAnimate = document.querySelectorAll('.feature-item, .gallery-item');
+    elementsToAnimate.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+    });
+});
 
 // Mobile navigation toggle
 const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
