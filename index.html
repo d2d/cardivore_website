@@ -127,5 +127,28 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDSrNyjhVrtfcuh19bNCqbJwEY3m6oOwOM",
+          authDomain: "cardivore-12b93.firebaseapp.com",
+          projectId: "cardivore-12b93",
+          storageBucket: "cardivore-12b93.firebasestorage.app",
+          messagingSenderId: "898297743648",
+          appId: "1:898297743648:web:ca07684829fbc1e3396f45",
+          measurementId: "G-SSJ8Q7DQZY"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </body>
 </html>
